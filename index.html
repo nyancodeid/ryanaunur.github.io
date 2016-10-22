@@ -1,1 +1,138 @@
-Hello World
+<!DOCTYPE html>
+<html >
+  <head>
+    <meta charset="UTF-8">
+    <title>Errors</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic">
+    
+    
+    <link rel='stylesheet' href="css/angular-material.css">
+
+        <link rel="stylesheet" href="css/style.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script src='https://www.google.com/recaptcha/api.js'></script>
+    
+    
+  </head>
+
+  <body>
+<md-card md-theme="{{ showDarkTheme ? 'dark-blue' : 'default' }}" md-theme-watch>
+    <div ng-controller="AppCtrl" layout="column" ng-cloak="" class="inputdemoErrors inputdemoBasicUsage" ng-app="MyApp">
+  <md-card-title md-colors="{background: '{{primary}}-900'}">
+      <md-card-title-text >
+        <span class="md-headline">Informasikan Penerima Donasi</span>
+        <span class="md-subhead">Isikan Form di bawah ini untuk membantu Kami dalam memberikan Donasi kepada yang membutuhkan</span>
+      </md-card-title-text>
+  </md-card-title>
+  <md-content layout-padding="">
+    <form name="projectForm" ng-submit="storeDonatur($event)">
+
+      <md-input-container class="md-block">
+        <label>Nama Lengkap</label>
+        <input md-maxlength="30" required="" md-no-asterisk="" name="description" ng-model="dataDonatur.nama">
+        <div ng-messages="projectForm.description.$error">
+          <div ng-message="required">This is required.</div>
+          <div ng-message="md-maxlength">The description must be less than 30 characters long.</div>
+        </div>
+      
+      </md-input-container>
+
+      <md-input-container class="md-block">
+        <label>Email</label>
+        <input required="" type="email" name="clientEmail" ng-model="dataDonatur.email" minlength="10" maxlength="100" ng-pattern="/^.+@.+\..+$/">
+
+        <div ng-messages="projectForm.clientEmail.$error" role="alert">
+          <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
+            Your email must be between 10 and 100 characters long and look like an e-mail address.
+          </div>
+        </div>
+      </md-input-container>
+
+
+          <md-input-container class="md-block" flex="100">
+            <label>Alamat</label>
+            <input ng-model="dataDonatur.alamat">
+          </md-input-container>
+
+          <md-input-container flex="100">
+            <label>Tanggal Lahir</label>
+            <md-datepicker ng-model-options="{timezone: 'UTC'}" ng-model="dataDonatur.tglLahir"></md-datepicker>
+          </md-input-container>
+
+
+      <div layout="row">
+        <md-input-container flex="100">
+          <label>Type Bank</label>
+          <md-select name="type" ng-model="dataDonatur.bank" required="">
+            <md-option value="bri">BRI</md-option>
+            <md-option value="bni">BNI</md-option>
+            <md-option value="bca">BCA</md-option>
+            <md-option value="citibank">citiBank</md-option>
+          </md-select>
+        </md-input-container>
+      </div>
+
+      <md-input-container class="md-block">
+        <label>Jumlah Donasi</label>
+        <input required="" type="number" step="any" name="rate" ng-model="dataDonatur.donasi">
+
+        <div ng-messages="projectForm.rate.$error" multiple="" md-auto-hide="false">
+          <div ng-message="required">
+            You've got to charge something! You can't just <b>give away</b> a Missile Defense
+            System.
+          </div>
+
+          <div ng-message="pattern">
+            You should charge exactly $1,234.
+          </div>
+
+        </div>
+      </md-input-container>
+      
+      <div>
+        <div class="g-recaptcha" data-sitekey="6LdkZAkUAAAAAFXvjqoDlOcVcAecFvwpLnUBoveq"></div>
+      </div>
+
+      <div>
+        <md-button class="md-raised md-primary" type="submit">Submit</md-button>
+      </div>
+  
+      <p style="font-size:.8em; width: 100%; text-align: center;">
+        Material Form <br /> Develop By <a href="https://docs.angularjs.org/api/ngMessages" target="_blank">RyanDev Studio</a> Design By <a href="https://www.facebook.com/ryan.hac" target="_blank">Ryan Aunur Rassyid</a>
+      </p>
+    </form>
+    <p>{{dataDonatur}}</p>
+
+  </md-content>
+
+</div>
+</md-card>
+<!--
+Copyright 2016 Google Inc. All Rights Reserved. 
+Use of this source code is governed by an MIT-style license that can be foundin the LICENSE file at http://material.angularjs.org/HEAD/license.
+-->
+        <script src="js/angular.js">
+        </script>
+        <script src="js/angular-animate.min.js">
+        </script>
+        <script src="js/angular-route.min.js">
+        </script>
+        <script src="js/angular-aria.min.js">
+        </script>
+        <script src="js/angular-messages.min.js">
+        </script>
+        <script src="js/svg-assets-cache.js">
+        </script>
+        <script src="js/angular-material.js">
+        </script>
+        <script src="js/index.js">
+        </script>
+
+
+        <script src="js/index.js"></script>
+
+    
+    
+  </body>
+</html>

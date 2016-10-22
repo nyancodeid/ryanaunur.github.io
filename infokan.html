@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html >
+  <head>
+    <meta charset="UTF-8">
+    <title>Infokan Penerima Donasi</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic">
+    
+    
+    <link rel='stylesheet prefetch' href='css/angular-material.css'>
+<link rel='stylesheet prefetch' href='https://material.angularjs.org/1.1.1/docs.css'>
+
+    <link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/animate.min.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script src='https://www.google.com/recaptcha/api.js'></script>
+    
+    
+  </head>
+
+  <body >
+<md-card md-theme="{{ showDarkTheme ? 'dark-blue' : 'default' }}" md-theme-watch>
+
+    <div ng-controller="AppCtrl" layout="column" ng-cloak="" class="inputdemoErrors inputdemoBasicUsage " ng-app="MyApp">
+<md-card-title md-colors="{background: '{{primary}}-900'}">
+          <md-card-title-text >
+            <span class="md-headline">Informasikan Penerima Donasi</span>
+            <span class="md-subhead">Isikan Form di bawah ini untuk membantu Kami dalam memberikan Donasi kepada yang membutuhkan</span>
+          </md-card-title-text>
+        </md-card-title>
+  <md-content layout-padding="">
+
+    <form name="projectForm" class="animated fadeInRight" ng-submit="storeDonatur($event)">
+
+	<div layout-gt-xs="row">
+		<md-input-container class="md-block" flex="100" >
+	        <label>Nama Lengkap</label>
+	        <input md-maxlength="30" required="" md-no-asterisk="" name="nama" ng-model="infoPenerima.nama">
+	        <div ng-messages="projectForm.nama.$error">
+	          <div ng-message="required">This is required.</div>
+	          <div ng-message="md-maxlength">The description must be less than 30 characters long.</div>
+	        </div>
+      
+      	</md-input-container>	
+	    <md-input-container class="md-block" flex="100">
+	        <label>Umur</label>
+	        <input required="" md-no-asterisk="" type="number" name="umur" ng-model="infoPenerima.umur">
+	        <div ng-messages="projectForm.umur.$error">
+	          <div ng-message="required">This is required.</div>
+	        </div>
+	      
+	    </md-input-container>	
+	</div>      
+
+	  <md-input-container class="md-block" flex="100">
+        <label>Nama Orang Tua ( Jika yang di bantu anak-anak )</label>
+        <input md-maxlength="30" md-no-asterisk="" name="nama_ortu" ng-model="infoPenerima.nama_ortu">
+        <div ng-messages="projectForm.nama_ortu.$error">
+          <div ng-message="md-maxlength">Tidak boleh lebih dari 30 Karakter</div>
+        </div>
+      
+      </md-input-container>
+
+	  <md-input-container class="md-block" flex="100">
+        <label>Pekerjaan Orang Tua ( Jika yang di bantu anak-anak )</label>
+          <md-select name="type" req ng-model="infoPenerima.pekerjaan_ortu">
+            <md-option value="swasta">Swasta</md-option>
+            <md-option value="pegawai">Pegawai</md-option>
+            <md-option value="petani">Petani</md-option>
+            <md-option value="peternak">Peternak</md-option>
+            <md-option value="penjagatoko">Penjaga Toko</md-option>
+            <md-option value="karyawan">Karyawan</md-option>
+            <md-option value="lainnya">Lainnya</md-option>
+          </md-select>
+      
+      </md-input-container>
+
+	  <md-input-container class="md-block">
+          <label>Alamat</label>
+          <textarea ng-model="infoPenerima.alamat" name="alamat" required="" md-maxlength="150" rows="5" md-select-on-focus=""></textarea>
+      	  <div ng-messages="projectForm.alamat.$error">
+          	<div ng-message="required">This is required.</div>
+        </div>
+      </md-input-container>
+
+	  <div layout-gt-xs="row">
+		  <md-input-container class="md-block" flex="100">
+	        <label>Provinsi</label>
+	        <md-select md-on-open="loadProvinsi()" name="provinsi" ng-model="infoPenerima.provinsi" placeholder="Provinsi" style="min-width: 200px;">
+              <md-option ng-repeat="provinsi in provinsis" ng-value="provinsi">
+                {{provinsi.nama}}
+              </md-option>
+            </md-select>
+	      	<div ng-messages="projectForm.provinsi.$error">
+          		<div ng-message="required">This is required.</div>
+        	</div>
+	      </md-input-container>
+		  <md-input-container class="md-block" flex="100">
+	        <label>Kabupaten / Kota</label>
+	        <md-select md-on-open="loadKabupaten()" ng-model="infoPenerima.kabupaten" placeholder="Kabupaten / Kota" style="min-width: 200px;">
+              <md-option ng-repeat="kabupaten in kabupatens" ng-value="kabupaten">
+                {{kabupaten.nama}}
+              </md-option>
+            </md-select>
+	      	<div ng-messages="projectForm.kabupaten.$error">
+          		<div ng-message="required">This is required.</div>
+        	</div>
+	      </md-input-container>
+	  </div>
+
+      <md-input-container class="md-block">
+          <label>Alasan Memerlukan Bantuan</label>
+          <textarea ng-model="infoPenerima.alasan" name="alasan" md-maxlength="150" rows="5" md-select-on-focus=""></textarea>
+      </md-input-container>
+
+ 	  <md-input-container class="md-block" flex="100">
+	        <label>Biaya</label>
+	        <input required="" md-no-asterisk="" type="number" name="biaya" ng-model="infoPenerima.biaya">
+	        <div ng-messages="projectForm.biaya.$error">
+	          <div ng-message="required">This is required.</div>
+	        </div>
+	      
+	  </md-input-container>	
+      
+      <div>
+        <div class="g-recaptcha" data-sitekey="6LdkZAkUAAAAAFXvjqoDlOcVcAecFvwpLnUBoveq"></div>
+      </div>
+
+      <div>
+        <md-button class="md-raised md-primary" type="submit">Next</md-button>
+      </div>
+  
+      <p style="font-size:.8em; width: 100%; text-align: center;">
+        Material Form <br /> Develop By <a href="https://docs.angularjs.org/api/ngMessages" target="_blank">RyanDev Studio</a> Design By <a href="https://www.facebook.com/ryan.hac" target="_blank">Ryan Aunur Rassyid</a>
+      </p>
+    </form>
+    <p>{{infoPenerima}}</p>
+  </md-content>
+
+</md-card>
+</div>
+<!--
+Copyright 2016 Google Inc. All Rights Reserved. 
+Use of this source code is governed by an MIT-style license that can be foundin the LICENSE file at http://material.angularjs.org/HEAD/license.
+-->
+        <script src="js/angular.js">
+        </script>
+        <script src="js/angular-animate.min.js">
+        </script>
+        <script src="js/angular-route.min.js">
+        </script>
+        <script src="js/angular-aria.min.js">
+        </script>
+        <script src="js/angular-messages.min.js">
+        </script>
+        <script src="js/svg-assets-cache.js">
+        </script>
+        <script src="js/angular-material.js">
+        </script>
+        <script src="js/index.js">
+        </script>
+        <script src="js/jslinq.min.js"></script>
+        <script src="js/infokan.js"></script>
+
+    
+    
+  </body>
+</html>
