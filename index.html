@@ -2,15 +2,16 @@
 <html >
   <head>
     <meta charset="UTF-8">
-    <title>Errors</title>
+    <title>Donatur</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic">
     
     
     <link rel='stylesheet' href="css/angular-material.css">
 
-        <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/animate.min.css">
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script src="js/jquery.min.js"></script>
     <script src='https://www.google.com/recaptcha/api.js'></script>
     
     
@@ -21,12 +22,12 @@
     <div ng-controller="AppCtrl" layout="column" ng-cloak="" class="inputdemoErrors inputdemoBasicUsage" ng-app="MyApp">
   <md-card-title md-colors="{background: '{{primary}}-900'}">
       <md-card-title-text >
-        <span class="md-headline">Informasikan Penerima Donasi</span>
-        <span class="md-subhead">Isikan Form di bawah ini untuk membantu Kami dalam memberikan Donasi kepada yang membutuhkan</span>
+        <span class="md-headline">Formulir Donatur</span>
+        <span class="md-subhead">Isikan Form di bawah ini untuk melakukan donasi</span>
       </md-card-title-text>
   </md-card-title>
   <md-content layout-padding="">
-    <form name="projectForm" ng-submit="storeDonatur($event)">
+    <form name="projectForm"  id="formDonat" ng-submit="storeDonatur($event)">
 
       <md-input-container class="md-block">
         <label>Nama Lengkap</label>
@@ -55,9 +56,9 @@
             <input ng-model="dataDonatur.alamat">
           </md-input-container>
 
-          <md-input-container flex="100">
-            <label>Tanggal Lahir</label>
-            <md-datepicker ng-model-options="{timezone: 'UTC'}" ng-model="dataDonatur.tglLahir"></md-datepicker>
+          <md-input-container class="md-block" flex="100">
+            <label>Umur</label>
+            <input type="number" ng-model="dataDonatur.umur">
           </md-input-container>
 
 
@@ -98,11 +99,46 @@
         <md-button class="md-raised md-primary" type="submit">Submit</md-button>
       </div>
   
-      <p style="font-size:.8em; width: 100%; text-align: center;">
-        Material Form <br /> Develop By <a href="https://docs.angularjs.org/api/ngMessages" target="_blank">RyanDev Studio</a> Design By <a href="https://www.facebook.com/ryan.hac" target="_blank">Ryan Aunur Rassyid</a>
-      </p>
     </form>
-    <p>{{dataDonatur}}</p>
+    <div id="rekening-show">
+    <md-card>
+        <md-card-title>
+          <md-card-title-text>
+            <span class="md-headline">Terima Kasih</span>
+            <span class="md-subhead">{{responseData.message}}</span>
+          </md-card-title-text>
+        
+        </md-card-title>
+        
+      </md-card>
+
+    <md-card md-colors="{background: '{{primary}}-900'}" >
+        <md-card-title>
+          <md-card-title-text>
+            <span class="md-headline">Rekening {{responseData.bank}}</span>
+            <div layout-gt-xs="row" style="margin-top:10px;">
+              <div flex="50">
+              <span class="md-subhead">
+                 No. Rekening
+              </span><br />
+              <span class="md-headline">{{responseData.no_rek}}</span>
+              </div>
+              <div flex="50">
+              <span class="md-subhead">
+                 Atas Nama
+              </span><br />
+              <span class="md-headline">{{responseData.an}}</span>
+              </div>
+            </div>
+          </md-card-title-text>
+        
+        </md-card-title>
+        
+      </md-card>
+    </div>
+    <p style="font-size:.8em; text-align: center;">
+        Material Form <br /> Develop By <a href="https://www.facebook.com/ryan.hac" target="_blank" style="text-decoration:none">RyanDev Studio</a> Design By <a href="https://www.facebook.com/ryan.hac" target="_blank" style="text-decoration:none">Ryan Aunur Rassyid</a>
+    </p>
 
   </md-content>
 
@@ -126,12 +162,13 @@ Use of this source code is governed by an MIT-style license that can be foundin 
         </script>
         <script src="js/angular-material.js">
         </script>
-        <script src="js/index.js">
-        </script>
-
 
         <script src="js/index.js"></script>
-
+        <script>
+          $('document').ready(function() {
+              $('#rekening-show').hide();
+          });
+        </script>
     
     
   </body>

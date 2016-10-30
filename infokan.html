@@ -7,19 +7,18 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic">
     
     
-    <link rel='stylesheet prefetch' href='css/angular-material.css'>
-<link rel='stylesheet prefetch' href='https://material.angularjs.org/1.1.1/docs.css'>
+    <link rel='stylesheet' href='css/angular-material.css'>
 
     <link rel="stylesheet" href="css/style.css">
-	<link rel="stylesheet" href="css/animate.min.css">
+	  <link rel="stylesheet" href="css/animate.min.css">
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script src="js/jquery.min.js"></script>
     <script src='https://www.google.com/recaptcha/api.js'></script>
     
     
   </head>
 
-  <body >
+  <body>
 <md-card md-theme="{{ showDarkTheme ? 'dark-blue' : 'default' }}" md-theme-watch>
 
     <div ng-controller="AppCtrl" layout="column" ng-cloak="" class="inputdemoErrors inputdemoBasicUsage " ng-app="MyApp">
@@ -30,39 +29,47 @@
           </md-card-title-text>
         </md-card-title>
   <md-content layout-padding="">
+      <md-card md-colors="{background: '{{accent}}-800'}" id="complete" >
+        <md-card-title>
+          <md-card-title-text>
+            <span class="md-headline">Terima Kasih</span>
+            <span class="md-subhead">Terima Kasih {{dataInforman.nama}} sudah membantu kami Data sudah dikirim.</span>
+          </md-card-title-text>
+        
+        </md-card-title>
+        
+      </md-card>
+    <form name="projectForm" class="animated fadeInRight" ng-submit="storeInfo($event)">
+      <h2>Informasi Penerima Donasi</h2>
+    	<div layout-gt-xs="row">
+    		<md-input-container class="md-block" flex="100" >
+    	     <label>Nama Lengkap</label>
+    	     <input md-maxlength="30" required="" md-no-asterisk="" name="nama" ng-model="infoPenerima.nama">
+    	     <div ng-messages="projectForm.nama.$error">
+    	       <div ng-message="required">This is required.</div>
+    	       <div ng-message="md-maxlength">The description must be less than 30 characters long.</div>
+    	     </div>
+          
+        </md-input-container>	
+    	  <md-input-container class="md-block" flex="100">
+    	    <label>Umur</label>
+    	        <input required="" md-no-asterisk="" type="number" name="umur" ng-model="infoPenerima.umur">
+    	        <div ng-messages="projectForm.umur.$error">
+    	          <div ng-message="required">This is required.</div>
+    	        </div>
+    	      
+    	    </md-input-container>	
+    	</div>      
 
-    <form name="projectForm" class="animated fadeInRight" ng-submit="storeDonatur($event)">
-
-	<div layout-gt-xs="row">
-		<md-input-container class="md-block" flex="100" >
-	        <label>Nama Lengkap</label>
-	        <input md-maxlength="30" required="" md-no-asterisk="" name="nama" ng-model="infoPenerima.nama">
-	        <div ng-messages="projectForm.nama.$error">
-	          <div ng-message="required">This is required.</div>
-	          <div ng-message="md-maxlength">The description must be less than 30 characters long.</div>
-	        </div>
-      
-      	</md-input-container>	
 	    <md-input-container class="md-block" flex="100">
-	        <label>Umur</label>
-	        <input required="" md-no-asterisk="" type="number" name="umur" ng-model="infoPenerima.umur">
-	        <div ng-messages="projectForm.umur.$error">
-	          <div ng-message="required">This is required.</div>
-	        </div>
-	      
-	    </md-input-container>	
-	</div>      
-
-	  <md-input-container class="md-block" flex="100">
         <label>Nama Orang Tua ( Jika yang di bantu anak-anak )</label>
         <input md-maxlength="30" md-no-asterisk="" name="nama_ortu" ng-model="infoPenerima.nama_ortu">
         <div ng-messages="projectForm.nama_ortu.$error">
           <div ng-message="md-maxlength">Tidak boleh lebih dari 30 Karakter</div>
         </div>
-      
       </md-input-container>
 
-	  <md-input-container class="md-block" flex="100">
+	    <md-input-container class="md-block" flex="100">
         <label>Pekerjaan Orang Tua ( Jika yang di bantu anak-anak )</label>
           <md-select name="type" req ng-model="infoPenerima.pekerjaan_ortu">
             <md-option value="swasta">Swasta</md-option>
@@ -73,9 +80,8 @@
             <md-option value="karyawan">Karyawan</md-option>
             <md-option value="lainnya">Lainnya</md-option>
           </md-select>
-      
       </md-input-container>
-
+    
 	  <md-input-container class="md-block">
           <label>Alamat</label>
           <textarea ng-model="infoPenerima.alamat" name="alamat" required="" md-maxlength="150" rows="5" md-select-on-focus=""></textarea>
@@ -108,10 +114,22 @@
         	</div>
 	      </md-input-container>
 	  </div>
+    <md-input-container class="md-block" flex="100">
+          <label>No. HP / Telp</label>
+          <input required="" md-no-asterisk="" type="number" name="telp" ng-model="infoPenerima.telp">
+          <div ng-messages="projectForm.telp.$error">
+            <div ng-message="required">This is required.</div>
+          </div>
+    </md-input-container> 
+
+    <md-input-container class="md-block" flex="100">
+          <label>Lokasi ( isi jika ada di Rumah Sakit )</label>
+          <input md-no-asterisk="" name="lokasi" ng-model="infoPenerima.lokasi">
+    </md-input-container> 
 
       <md-input-container class="md-block">
           <label>Alasan Memerlukan Bantuan</label>
-          <textarea ng-model="infoPenerima.alasan" name="alasan" md-maxlength="150" rows="5" md-select-on-focus=""></textarea>
+          <textarea ng-model="infoPenerima.alasan" name="alasan" required="" md-maxlength="150" rows="5" md-select-on-focus=""></textarea>
       </md-input-container>
 
  	  <md-input-container class="md-block" flex="100">
@@ -120,22 +138,58 @@
 	        <div ng-messages="projectForm.biaya.$error">
 	          <div ng-message="required">This is required.</div>
 	        </div>
-	      
-	  </md-input-container>	
-      
-      <div>
-        <div class="g-recaptcha" data-sitekey="6LdkZAkUAAAAAFXvjqoDlOcVcAecFvwpLnUBoveq"></div>
-      </div>
-
-      <div>
-        <md-button class="md-raised md-primary" type="submit">Next</md-button>
-      </div>
+	  </md-input-container>     
   
-      <p style="font-size:.8em; width: 100%; text-align: center;">
-        Material Form <br /> Develop By <a href="https://docs.angularjs.org/api/ngMessages" target="_blank">RyanDev Studio</a> Design By <a href="https://www.facebook.com/ryan.hac" target="_blank">Ryan Aunur Rassyid</a>
-      </p>
+    <h2>Data Diri Informan</h2>
+    
+    <md-input-container class="md-block" flex="100" >
+           <label>Nama Lengkap</label>
+           <input md-maxlength="30" required="" md-no-asterisk="" name="namainforman" ng-model="dataInforman.nama">
+           <div ng-messages="projectForm.namainforman.$error">
+             <div ng-message="required">This is required.</div>
+             <div ng-message="md-maxlength">The description must be less than 30 characters long.</div>
+           </div>
+          
+    </md-input-container> 
+
+    <md-input-container class="md-block">
+        <label>Email</label>
+        <input required="" type="email" name="emailInforman" ng-model="dataInforman.email" minlength="10" maxlength="100" ng-pattern="/^.+@.+\..+$/">
+
+        <div ng-messages="projectForm.emailInforman.$error" role="alert">
+          <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
+            Your email must be between 10 and 100 characters long and look like an e-mail address.
+          </div>
+        </div>
+    </md-input-container>
+
+    <md-input-container class="md-block" flex="100">
+          <label>No. HP</label>
+          <input required="" md-no-asterisk="" type="number" name="nohp" ng-model="dataInforman.nohp">
+          <div ng-messages="projectForm.nohp.$error">
+            <div ng-message="required">This is required.</div>
+          </div>
+    </md-input-container> 
+
+    <h2>Bukti Foto</h2>
+    <input type="file" id="files" ng-model="dataBukti.bukti" name="bukti[]" required="" multiple accept=".gif, .jpg, .png, .jpeg" ><br/>
+
+
+    <!-- Footer -->    
+	  <div style="margin-top:10px;margin-bottom:10px;" id="captcha">
+      <div class="g-recaptcha" data-sitekey="6LdkZAkUAAAAAFXvjqoDlOcVcAecFvwpLnUBoveq"></div>
+      <span id="errorcaptcha" md-colors="{color: '{{red}}-900'}">Harap Menyelesaikan Captcha</span>
+    </div>
+
+    <div> 
+      <md-button class="md-raised md-primary" type="submit">Next</md-button>
+    </div>
+  
+    <p style="font-size:.8em; width: 100%; text-align: center;">
+        Material Form <br /> Develop By <a href="https://www.facebook.com/ryan.hac" target="_blank">RyanDev Studio</a> Design By <a href="https://www.facebook.com/ryan.hac" target="_blank">Ryan Aunur Rassyid</a>
+    </p>
     </form>
-    <p>{{infoPenerima}}</p>
+
   </md-content>
 
 </md-card>

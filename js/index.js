@@ -4,6 +4,7 @@ angular.module('MyApp',['ngMaterial', 'ngMessages', 'material.svgAssetsCache'])
   $scope.dataDonatur;
   $scope.primary = 'blue';
   $scope.accent = 'green';
+  $scope.responseData;
 
   $scope.storeDonatur = function($event) {
   	event.preventDefault();
@@ -17,14 +18,17 @@ angular.module('MyApp',['ngMaterial', 'ngMessages', 'material.svgAssetsCache'])
         nama:$scope.dataDonatur.nama,
         alamat:$scope.dataDonatur.alamat,
         email: $scope.dataDonatur.email,
-        tgl_lahir:$scope.dataDonatur.tglLahir,
+        umur:$scope.dataDonatur.umur,
       	bank: $scope.dataDonatur.bank,
       	donasi:$scope.dataDonatur.donasi
     });
         
 
-  	$http.post('http://server13.zz.mu/api/donatur/store', data, config).success(function(data) {
+  	$http.post('http://localhost/api/donatur/store', data, config).success(function(data) {
   		console.log(data)
+      $scope.responseData = data;
+      $('#formDonat').hide();
+      $('#rekening-show').show();
   	});
   }  
 });

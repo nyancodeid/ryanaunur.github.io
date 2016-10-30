@@ -2,37 +2,25 @@ angular.module('MyApp',['ngMaterial', 'ngMessages', 'material.svgAssetsCache'])
 
 .controller('AppCtrl', function($timeout, $scope, $http, $log) {
   $scope.primary = 'blue';
-  $scope.accent = 'green';
+  $scope.accent = 'purple';
+  $scope.red = 'red';
 
-  $scope.formData;
   $scope.infoPenerima;
+  $scope.dataInforman;
+  $scope.dataBukti;
 
-  $scope.storeDonatur = function($event) {
+  $scope.storeInfo = function($event) {
   	event.preventDefault();
 
-  	var config = {
-        headers : {
-            'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
-        }
-    }
-    var data = $scope.param({
-        nama:$scope.infoPenerima.nama,
-        umur:$scope.infoPenerima.umur,
-        tgl_lahir:$scope.tglLahir,
-    	bank: $scope.bank,
-    	donasi:$scope.donasi
-    });
-        
+    var data = $scope;
 
-  	$http.post('http://localhost/donatur/store', data, config).success(function(data) {
-  		console.log(data)
-  	});
+    sendAjax(data);
+
   }  
 
   $scope.getProvinsi = function($event) {
       $http.get("data/provinsi.json")
         .success(function(results) {
-          console.log('results', JSON.stringify(results));
           return results.data;
         });
     };
@@ -43,10 +31,10 @@ angular.module('MyApp',['ngMaterial', 'ngMessages', 'material.svgAssetsCache'])
   $scope.kabupatens = null;
 
   $scope.loadProvinsi = function() {
-
+    // https://cdn.rawgit.com/ryanaunur/sedekahreceh/master
     // Use timeout to simulate a 650ms request.
     return $timeout(function() {
-      $http.get("https://cdn.rawgit.com/ryanaunur/sedekahreceh/master/provinsi.json").then(function(response) {
+      $http.get("data/provinsi.json").then(function(response) {
           $scope.provinsis = response.data;
       });
 
@@ -57,11 +45,10 @@ angular.module('MyApp',['ngMaterial', 'ngMessages', 'material.svgAssetsCache'])
 
     // Use timeout to simulate a 650ms request.
     return $timeout(function() {
-      $http.get("https://cdn.rawgit.com/ryanaunur/sedekahreceh/master/kota.json").then(function(response) {
+      $http.get("data/kota.json").then(function(response) {
         var kotas = new JSLINQ(response.data)
                  .Where(function (kota) { return kota.provinsi == $scope.infoPenerima.provinsi.id })
                  .OrderBy(function (kota) { return kota.nama });
-        $log.info(kotas);
         $scope.kabupatens = kotas.items;
       });
 
@@ -75,6 +62,68 @@ angular.module('MyApp',['ngMaterial', 'ngMessages', 'material.svgAssetsCache'])
   $mdThemingProvider.theme('dark-blue').backgroundPalette('blue').dark();
 });
 
+
+function loger(data) {
+  console.info(data);
+} 
+
+
+function sendAjax(data) {
+  var dataFoto = jQuery('input#files')[0].files;
+
+  if (grecaptcha.getResponse().length == 0) {
+    $('#errorcaptcha').show();
+
+    return;
+  }
+
+  if (dataFoto.length == 3) {
+    var form = new FormData(); 
+    form.append("nama",           data.infoPenerima.nama);
+    form.append("umur",           data.infoPenerima.umur);
+    form.append("nama_ortu",      data.infoPenerima.nama_ortu);
+    form.append("pekerjaan_ortu", data.infoPenerima.pekerjaan_ortu);
+    form.append("alamat",         data.infoPenerima.alamat);
+    form.append("kabupaten_kota", data.infoPenerima.kabupaten.nama);
+    form.append("provinsi",       data.infoPenerima.provinsi.nama);
+    form.append("telp",           data.infoPenerima.telp);
+    form.append("lokasi",         data.infoPenerima.lokasi);
+    form.append("alasan_bantuan", data.infoPenerima.alasan);
+    form.append("biaya",          data.infoPenerima.biaya);
+    form.append("nama_informan",  data.dataInforman.nama);
+    form.append("no_hp_informan", data.dataInforman.nohp);
+    form.append("email_informan", data.dataInforman.email);
+    form.append("foto[0]", jQuery('input#files')[0].files[0]);
+    form.append("foto[1]", jQuery('input#files')[0].files[1]);
+    form.append("foto[2]", jQuery('input#files')[0].files[2]);
+
+    var settings = {
+      "async": true,
+      "crossDomain": true,
+      "url": "http://localhost/api/penerima/store",
+      "method": "POST",
+      "processData": false,
+      "contentType": false,
+      "mimeType": "multipart/form-data",
+      "data": form
+    }
+
+    $.ajax(settings).done(function (response) {
+      $('#complete').show();
+      $('html, body').animate({ scrollTop: $('#complete').offset().top }, 'slow');
+      window.setTimeout(function(){ document.location.reload(true); }, 5000);
+    });  
+  } else {
+    alert('Error Foto Kurang dari 3 ');
+  }
+
+  
+  }
+
+  $('document').ready(function() {
+    $('#complete').hide();
+    $('#errorcaptcha').hide();
+  });
 
 
 /**
