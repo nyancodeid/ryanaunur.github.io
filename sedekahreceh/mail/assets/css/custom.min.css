@@ -1,0 +1,90 @@
+.right-menu {float: right;}
+.blue-900 {background: rgb(13, 71, 161);color:rgba(255, 255, 255, 0.870588);}
+.donatur {padding: 10px;margin-bottom: 0;margin-right: -5px}
+.donatur .col-md-3 {padding: 10px;display:inline-block;width:calc((100% / 4) - 15px);}
+.donatur .col-md-3 .title {font-size: 110%;}
+.donatur .col-md-3 .subtitle {font-size: 140%;}
+body {
+  padding-top: 20px;
+  padding-left: 20px;
+  box-sizing: border-box;
+}
+
+body.view-detail {
+	padding: 0 !important;
+}
+
+.view-detail .wrapper {
+  padding-top: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
+  box-sizing: border-box;
+}
+.view-detail .card{
+	float: left;
+}
+.view-detail .foto{
+	float: left;
+	padding: 0px 20px 20px 20px;
+}
+.view-detail .navbar-custom {
+	height: 64px;
+	line-height: 64px;
+	padding-left: 30px;
+	box-shadow: 1px 1px 1px 0 rgba(0,0,0,.07),1px 2px 5px 0 rgba(0,0,0,.06);
+}
+.view-detail .title-navbar {
+	font-size: 18px;
+}
+
+
+.mdl-dialog {
+  border: none;
+  box-shadow: 0 9px 46px 8px rgba(0, 0, 0, 0.14), 0 11px 15px -7px rgba(0, 0, 0, 0.12), 0 24px 38px 3px rgba(0, 0, 0, 0.2);
+  width: 330px; 
+  font-weight: 400;
+  white-space: nowrap;
+}
+  .mdl-dialog__title {
+    padding: 24px 24px 0;
+    margin: 0;
+    font-size: 2.5rem; }
+  .mdl-dialog__actions {
+    padding: 8px 8px 8px 24px;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-direction: row-reverse;
+        -ms-flex-direction: row-reverse;
+            flex-direction: row-reverse;
+    -webkit-flex-wrap: wrap;
+        -ms-flex-wrap: wrap;
+            flex-wrap: wrap; }
+    .mdl-dialog__actions > * {
+      margin-right: 8px;
+      height: 36px; }
+      .mdl-dialog__actions > *:first-child {
+        margin-right: 0; }
+    .mdl-dialog__actions--full-width {
+      padding: 0 0 8px 0; }
+      .mdl-dialog__actions--full-width > * {
+        height: 48px;
+        -webkit-flex: 0 0 100%;
+            -ms-flex: 0 0 100%;
+                flex: 0 0 100%;
+        padding-right: 16px;
+        margin-right: 0;
+        text-align: right; }
+  .mdl-dialog__content {
+    padding: 20px 24px 24px 24px;
+    color: rgba(0,0,0, 0.54); }
+
+
+.dialog-detail {
+  width: 800px !important;
+}
+
+@media (max-width:768px) {.md-info-box .col-md-3 {display: block; width: auto;}}
+
+
+
