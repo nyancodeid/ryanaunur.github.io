@@ -25,10 +25,14 @@ angular.module('MyApp',['ngMaterial', 'ngMessages', 'material.svgAssetsCache'])
         
 
   	$http.post('http://localhost/api/donatur/store', data, config).success(function(data) {
-  		console.log(data)
-      $scope.responseData = data;
-      $('#formDonat').hide();
-      $('#rekening-show').show();
+  		console.log(data.status);
+      if (data.status == 'ok') { 
+        $scope.responseData = data;
+        $('#formDonat').hide();
+        $('#rekening-show').show();
+      } else {
+        alert('Maaf, Masukkan Data yang Tepat. atau mungkin saat ini Server sedang dalam perbaikan');
+      }
   	});
   }  
 });
@@ -37,5 +41,5 @@ angular.module('MyApp',['ngMaterial', 'ngMessages', 'material.svgAssetsCache'])
 
 /**
 Copyright 2016 Google Inc. All Rights Reserved. 
-Use of this source code is governed by an MIT-style license that can be foundin the LICENSE file at http://material.angularjs.org/HEAD/license.
+COpyright 2016 RyanDev Studio. All Rights Reserved.
 **/

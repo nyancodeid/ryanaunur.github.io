@@ -51,14 +51,21 @@
       </md-input-container>
 
 
-          <md-input-container class="md-block" flex="100">
-            <label>Alamat</label>
-            <input ng-model="dataDonatur.alamat">
-          </md-input-container>
+    <md-input-container class="md-block">
+          <label>Alamat</label>
+          <textarea ng-model="dataDonatur.alamat" name="alamat" required="" md-maxlength="150" rows="5" md-select-on-focus=""></textarea>
+          <div ng-messages="projectForm.alamat.$error">
+            <div ng-message="required">This is required.</div>
+          <div ng-message="md-maxlength">Alamat tidak boleh lebih dari 150 karakter</div>
+        </div>
+      </md-input-container>
 
           <md-input-container class="md-block" flex="100">
             <label>Umur</label>
-            <input type="number" ng-model="dataDonatur.umur">
+            <input type="number" ng-model="dataDonatur.umur" name="umur" maxlength="3">
+            <div ng-messages="projectForm.umur.$error">
+                <div ng-message="maxlength">Umur tidak boleh lebih dari 3 karakter</div>
+            </div>
           </md-input-container>
 
 
@@ -69,7 +76,7 @@
             <md-option value="bri">BRI</md-option>
             <md-option value="bni">BNI</md-option>
             <md-option value="bca">BCA</md-option>
-            <md-option value="citibank">citiBank</md-option>
+            <md-option value="mandiri">Mandiri</md-option>
           </md-select>
         </md-input-container>
       </div>
@@ -91,8 +98,9 @@
         </div>
       </md-input-container>
       
-      <div>
-        <div class="g-recaptcha" data-sitekey="6LdkZAkUAAAAAFXvjqoDlOcVcAecFvwpLnUBoveq"></div>
+      <div style="margin-top:10px;margin-bottom:10px;" id="captcha">
+        <div class="g-recaptcha" data-sitekey="6LdkZAkUAAAAAFXvjqoDlOcVcAecFvwpLnUBoveq" style="transform:scale(0.77);-webkit-transform:scale(0.77);transform-origin:0 0;-webkit-transform-origin:0 0;"></div>
+        <span id="errorcaptcha" md-colors="{color: '{{red}}-900'}">Harap Menyelesaikan Captcha</span>
       </div>
 
       <div>
@@ -148,7 +156,7 @@
 Copyright 2016 Google Inc. All Rights Reserved. 
 Use of this source code is governed by an MIT-style license that can be foundin the LICENSE file at http://material.angularjs.org/HEAD/license.
 -->
-        <script src="js/angular.js">
+        <script src="js/angular.min.js">
         </script>
         <script src="js/angular-animate.min.js">
         </script>
@@ -160,13 +168,15 @@ Use of this source code is governed by an MIT-style license that can be foundin 
         </script>
         <script src="js/svg-assets-cache.js">
         </script>
-        <script src="js/angular-material.js">
+        <script src="js/angular-material.min.js">
         </script>
 
         <script src="js/index.js"></script>
         <script>
           $('document').ready(function() {
               $('#rekening-show').hide();
+              $('#errorcaptcha').hide();
+
           });
         </script>
     
