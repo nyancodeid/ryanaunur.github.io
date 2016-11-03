@@ -49,7 +49,7 @@
 	var engine = new XMLHttpRequest();
 	engine.open('GET', document.location, false);
 	engine.send(null);
-	var headers = req.getAllResponseHeaders().toLowerCase();
+	var headers = engine.getAllResponseHeaders().toLowerCase();
 	headers = parseResponseHeaders(headers);
 	headers["PROTOCOL"] = location.protocol;
 	headers["HOSTNAME"] = location.hostname;
