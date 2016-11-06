@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Example NyanLibs</title>
+
+	<script src="hmac-sha1.js"></script>
+	<script src="jquery.min.js"></script>
+	<script src="../../1.0.1/nyanlibs.js"></script>
+	<script src="aes.js"></script>
+	<script src="hmac-sha512.js"></script>
+	<script src="hmac-sha3.js"></script>
+
+
+</head>
+<body>
+
+	<div id="result"></div>
+	<script>
+		var kunci = "123";
+		$(document).ready(function() {
+
+		});
+
+		function atob(data, key) {
+			var encrypted = CryptoJS.AES.encrypt(data, key);
+			return encodeURIComponent(encrypted.toString()); 
+		}
+		function btoa(data, key) {
+			data = decodeURIComponent(data);
+			var decrypted = CryptoJS.AES.decrypt(data.toString(), key);
+			return decrypted.toString(CryptoJS.enc.Utf8);
+		}
+
+		function get_encry() {
+			console.info(atob($_GET['url'], kunci))
+		} 
+
+	</script>
+</body>
+</html>

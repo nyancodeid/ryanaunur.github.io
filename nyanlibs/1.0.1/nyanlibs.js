@@ -12,7 +12,10 @@
 
 	// var
 	var $_GET;
+	var $_URI;
 	var $_SERVER;
+
+	var headers;
 
 	// Function
 	function parseResponseHeaders(headerStr) {
@@ -54,6 +57,15 @@
 			loose:  /^(?:(?![^:@]+:[^:@\/]*@)([^:\/?#.]+):)?(?:\/\/)?((?:(([^:@]*)(?::([^:@]*))?)?@)?([^:\/?#]*)(?::(\d*))?)(((\/(?:[^?#](?![^?#\/]*\.[^?#\/.]+(?:[?#]|$)))*\/?)?([^?#\/]*))(?:\?([^#]*))?(?:#(.*))?)/
 		}
 	};
+	function random(lengthkey) {
+	    var text = "";
+	    var possible = "abcdefghijklmnopqrstuvwxyz0123456789";
+
+	    for( var i=0; i < lengthkey; i++ )
+	        text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+	    return text;
+	}
 
 	// Main 
 	var qs = document.location.search;
@@ -67,15 +79,27 @@
 	var result = params;
 	$_GET = params;
 
+	
 
-	var engine = new XMLHttpRequest();
-	engine.open('GET', document.location, false);
-	engine.send(null);
-	var headers = engine.getAllResponseHeaders().toLowerCase();
-	headers = parseResponseHeaders(headers);
-	var uri = parseUri(document.location);
+	var xhr = new XMLHttpRequest();
+	xhr.withCredentials = true;
 
-	headers = headers.push(uri);
+	xhr.addEventListener("readystatechange", function () {
+	  if (this.readyState === 4) {
+	  	console.info('get headers');
+	  	headers = xhr.getAllResponseHeaders().toLowerCase();
+	  	headers = parseResponseHeaders(headers);
+	  	var uri = parseUri(document.location);
 
-	$_SERVER = headers;
+	  	$_SERVER = headers;
+	  	$_URI = uri;
+	  }
+	});
+
+	xhr.open("GET", document.location);
+
+	xhr.send();
+
+	
+
 
