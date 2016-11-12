@@ -17,6 +17,9 @@ nav .input-group-btn {
 	float: right;
 	right: 100px;
 	top: calc((64px - 35px) / 2);
+	top: -moz-calc((64px - 35px) / 2);
+	top: -webkit-calc((64px - 35px) / 2);
+	top: -o-calc((64px - 35px) / 2);
 }
 nav .input-group-btn button {
 	border-radius: 3px !important;
