@@ -35,5 +35,10 @@ function input_clicked(event) {
 	}
 }
 
+function parseURL(data) {
+  	files = getPathFiles();
+		var encrypted = CryptoJS.AES.encrypt(data, files);
+		return encodeURIComponent(encrypted.toString()); 
+	}
 
 
