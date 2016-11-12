@@ -14,7 +14,7 @@ $('.btn-go').click(function() {
 
 	if (url != '') {
 		var encry = parseURL(url);
-		$('.nyan-input').val($_URI.PROTOCOL + '://' + $_URI.HOST + $_URI.DIRECTORY + 'go.html?data=' +  encry); 
+		$('.nyan-input').val($_URI.PROTOCOL + '://' + $_URI.HOST + $_URI.DIRECTORY + 'p/go.html?data=' +  encry); 
 		kondisi = true;
 	}
 });
