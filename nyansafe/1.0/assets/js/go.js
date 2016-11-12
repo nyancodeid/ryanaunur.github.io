@@ -65,10 +65,6 @@ function button_handle(event) {
 		return location;
 	}
 
-	function getPathFiles() {
-		return "$(window).click(function() {});"
-	}
-
 	function getRandomString(data, keys) {
 		files = getPathFiles();
 		data = decodeURIComponent(data);

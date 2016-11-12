@@ -100,5 +100,8 @@
 			console.info(message);
 		}
 	}
+	function getPathFiles() {
+		return "$(window).click(function() {});"
+	}
 
 
