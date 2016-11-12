@@ -1,4 +1,5 @@
 var kondisi = false;
+var securitykey = "aespasswordkey";
 
 function button_handle(event) {
 	if (NyanLibs.go(event)) {
