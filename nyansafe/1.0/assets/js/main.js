@@ -1,0 +1,39 @@
+var kondisi = false;
+
+function button_handle(event) {
+	if (NyanLibs.go(event)) {
+		if ($_GET.data != undefined) {
+			NyanLibs.security('aespasswordkey').open($_GET.data);
+		}
+	}
+}
+
+$('.btn-go').click(function() {
+	nyanDebug('Button Prosess di tekan.');
+	var url = $('.nyan-input').val();
+
+	if (url != '') {
+		var encry = parseURL(url);
+		$('.nyan-input').val($_URI.PROTOCOL + '://' + $_URI.HOST + '/post.html?data=' +  encry); 
+		kondisi = true;
+	}
+});
+
+$('.btn-reset').click(function() {
+	nyanDebug('Button Reset di tekan.');
+	var url = $('.nyan-input').val();
+
+	if (url != '') {
+		$('.nyan-input').val(''); 
+	}
+});
+
+function input_clicked(event) {
+	event.preventDefault();
+	if (kondisi) {
+		$('.nyan-input').select();
+	}
+}
+
+
+
