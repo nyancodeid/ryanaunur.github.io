@@ -1,4 +1,5 @@
 var kondisi = false;
+var securitykey = "aespasswordkey";
 
 function button_handle(event) {
 	if (NyanLibs.go(event)) {
@@ -14,7 +15,7 @@ $('.btn-go').click(function() {
 
 	if (url != '') {
 		var encry = parseURL(url);
-		$('.nyan-input').val($_URI.PROTOCOL + '://' + $_URI.HOST + $_URI.DIRECTORY + 'post.html?data=' +  encry); 
+		$('.nyan-input').val($_URI.PROTOCOL + '://' + $_URI.HOST + $_URI.DIRECTORY + 'p/go.html?data=' +  encry); 
 		kondisi = true;
 	}
 });
