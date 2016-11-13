@@ -8,6 +8,9 @@ nav {
 #post nav {
 	background-color: #673AB7 !important;
 } 
+#index #post nav .title {
+	color: #ffffff !important;
+}
 nav .title {
 	color: #ffffff;
 	line-height: 64px;
