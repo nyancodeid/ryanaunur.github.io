@@ -6,8 +6,8 @@ nav {
 	top: 0;
 }
 #post nav {
-	background-color: #673AB7;
-}
+	background-color: #673AB7 !important;
+} 
 nav .title {
 	color: #ffffff;
 	line-height: 64px;
@@ -15,7 +15,7 @@ nav .title {
 	font-size: 18px;
 }
 #post nav {
-	color: #ffffff;
+	color: #ffffff !important;
 }
 nav .input-group-btn {
 	display: inline-block;
