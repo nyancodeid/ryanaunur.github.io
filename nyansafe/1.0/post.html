@@ -15,8 +15,6 @@
     <link href="https://cdn.rawgit.com/ryanaunur/ryanaunur.github.io/master/nyansafe/1.0/assets/css/styles.min.css" rel="stylesheet" />
     <link href="https://cdn.rawgit.com/ryanaunur/ryanaunur.github.io/master/nyansafe/1.0/assets/css/custom.css" rel="stylesheet" />
 
-
-
 </head>
 <body id="post">
 	<nav class="z-depth-2">
@@ -50,7 +48,6 @@
 			<div class="space"></div>
 			<div id="content">
 				<div class="card large z-depth-2">
-				  <div class="card-image"> <img src="assets/img/photos/3.jpg"> </div>
                   <div class="card-content" id="verify-works">
                   <div id="verify">
 					<button type="button" class="btn btn-lg btn-round btn-primary" nyan-data="1" id="verify1" onclick="NyanLibs.get(event);">A<div class="ripple-wrapper"></div></button>
@@ -60,29 +57,9 @@
 					<button type="button" class="btn btn-lg btn-round btn-primary" nyan-data="3" id="verify5" onclick="NyanLibs.get(event);">H<div class="ripple-wrapper"></div></button>	
 				  </div>
                    <span class="card-title">Ini Judul Post</span>
-
-                    <div class="space"></div>
-                    <p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>
-	
-                   	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam ea recusandae impedit eos consectetur, amet suscipit, iste dolorum atque similique praesentium soluta dignissimos. Sunt assumenda placeat, minima molestiae minus aliquid?</p>
-
-                   	<p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>
-					<br/>
-                   	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam ea recusandae impedit eos consectetur, amet suscipit, iste dolorum atque similique praesentium soluta dignissimos. Sunt assumenda placeat, minima molestiae minus aliquid?</p>
-                   	
-                   	<p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>
-
-                   	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam ea recusandae impedit eos consectetur, amet suscipit, iste dolorum atque similique praesentium soluta dignissimos. Sunt assumenda placeat, minima molestiae minus aliquid?</p>
-                   	<br/>
-					<div class="row">
-						<div class="col-md-8 col-md-offset-2">
-				  			<div class="card-image"> <img src="assets/img/photos/3.jpg"> </div>
-						</div>
-					</div>
-					<br/>
-                   	<p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>
-
-                   	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam ea recusandae impedit eos consectetur, amet suscipit, iste dolorum atque similique praesentium soluta dignissimos. Sunt assumenda placeat, minima molestiae minus aliquid?</p>
+				   <div class="space"></div>
+				   <div class="post-content row"></div>
+                    
                    	
                   </div>
                 </div>
@@ -111,6 +88,31 @@
     <script charset="utf-8" src="https://cdn.rawgit.com/ryanaunur/ryanaunur.github.io/master/nyansafe/1.0/assets/dist/material.min.js"></script>
     <script charset="utf-8" src="https://cdn.rawgit.com/ryanaunur/ryanaunur.github.io/master/nyansafe/1.0/assets/dist/vendors.min.js"></script>
     <script charset="utf-8" src="https://cdn.rawgit.com/ryanaunur/ryanaunur.github.io/master/nyansafe/1.0/assets/dist/app.min.js"></script>
+    <script type="text/javascript">
+		var posts_no = 24;
+		var showpoststhumbs = false;
+		var readmorelink = false;
+		var showcommentslink = false;
+		var posts_date = false;
+		var post_summary = true;
+		var summary_chars = 70;
+	</script>
+    <script>
+
+    function randomposts(a) {
+	    window.jsonOut = a;
+	    var randIndex = Math.floor(Math.random() * (24 - 1 + 1));
+
+	    var title = a.feed.entry[randIndex].title.$t;
+	    var content = a.feed.entry[randIndex].content.$t;
+
+	    $('.card-title').text(title);
+	    $('.post-content').html(content);
+	
+    }
+
+    </script>
+    <script src="https://nyansafe.blogspot.co.id/feeds/posts/default?alt=json-in-script&max-results=24&callback=randomposts"></script>
     <script charset="utf-8" src="https://cdn.rawgit.com/ryanaunur/ryanaunur.github.io/master/nyansafe/1.0/assets/dist/nyanlibs.js"></script>
     <script charset="utf-8" src="https://cdn.rawgit.com/ryanaunur/ryanaunur.github.io/master/nyansafe/1.0/assets/dist/aes.js"></script>
     <script charset="utf-8" src="https://cdn.rawgit.com/ryanaunur/ryanaunur.github.io/master/nyansafe/1.0/assets/dist/nyanlibs-security.js"></script>
@@ -126,5 +128,6 @@
 	    	});
     	});
     </script>
+        
 </body>
 </html>
