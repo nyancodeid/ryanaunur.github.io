@@ -62,16 +62,16 @@
 						},
 						inject: function() {
 							$('a').each(function(i){
-								if (this.href != 'javascript:void(0)')
-								var link = parseURL(this.href);
-								var port;
-								if (document.location.port != '') {
-									port = document.location.port;
-								} else {
-								port = '';
+								if (this.href != 'javascript:void(0)') {
+									var link = parseURL(this.href);
+									var port;
+									if (document.location.port != '') {
+										port = document.location.port;
+									} else {
+									port = '';
+									}
+									this.href = 'http://www.nyansafe.ga/p/go.html?data=' + link;
 								}
-								this.href = 'http://www.nyansafe.ga/p/go.html?data=' + link;
-								  
 							});
 						}
 					}
