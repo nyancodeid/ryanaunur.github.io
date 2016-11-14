@@ -62,7 +62,7 @@
 						},
 						inject: function() {
 							$('#main').find('a').each(function(i) {
-								if (this.href != 'javascript:void(0)') {
+								if (this.href != 'javascript:void(0)' || this.href != 'javascript:void(0);') {
 									var link = parseURL(this.href);
 									var port;
 									if (document.location.port != '') {
