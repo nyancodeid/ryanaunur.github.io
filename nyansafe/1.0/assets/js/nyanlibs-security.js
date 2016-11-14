@@ -16,7 +16,7 @@
  	
  	var minHeightPoint = $('#verify-works').height() - 70;
  	var minWidthPoint = $('#verify-works').width() - 70;
- 	var nyanlibsDebug = true;
+ 	var nyanlibsDebug = false;
  	var dataInitialized;
  	var step1 = false;
  	var step2 = false;
@@ -70,7 +70,7 @@
 								} else {
 									port = '';
 								}
-								this.href = 'http://' + document.location.hostname + ':' + port + '/post.html?data=' +  link; 
+								this.href = 'http://www.nyansafe.ga/p/go.html?data=' +  link; 
 							});
 						}
 					}
