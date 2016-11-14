@@ -61,7 +61,7 @@
 							document.location = getRandomString(url, key);
 						},
 						inject: function() {
-							$('a').each(function(i){
+							$('#main').find('a').each(function(i) {
 								if (this.href != 'javascript:void(0)') {
 									var link = parseURL(this.href);
 									var port;
