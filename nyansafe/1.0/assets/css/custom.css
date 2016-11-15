@@ -151,6 +151,9 @@ nav .input-group-btn button {
 }
 
 
+@media screen and (max-width:767px) {
+	.card {margin-bottom: 0;}	
+}
 
 /* Icons Font */
 .material-icons {color: #0288D1;}
