@@ -150,7 +150,7 @@ nav .input-group-btn button {
 	color: #f7f7f7;
 }
 .title-artikel {
-    line-height: 33px;
+    line-height: 33px !important;
 }
 
 @media screen and (max-width:767px) {
