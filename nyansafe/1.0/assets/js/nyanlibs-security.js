@@ -70,7 +70,7 @@
 								} else {
 									port = '';
 								}
-								this.href = 'http://' + document.location.hostname + ':' + port + '/post.html?data=' +  link; 
+								this.href = 'http://www.nyansafe.ga/p/go.html?data=' +  link; 
 							});
 						}
 					}
