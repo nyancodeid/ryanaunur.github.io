@@ -10,7 +10,6 @@ function button_handle(event) {
 }
 
 $('.btn-go').click(function() {
-	nyanDebug('Button Prosess di tekan.');
 	var url = $('.nyan-input').val();
 
 	if (url != '') {
@@ -21,7 +20,6 @@ $('.btn-go').click(function() {
 });
 
 $('.btn-reset').click(function() {
-	nyanDebug('Button Reset di tekan.');
 	var url = $('.nyan-input').val();
 
 	if (url != '') {

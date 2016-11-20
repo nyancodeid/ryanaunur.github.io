@@ -149,8 +149,13 @@ nav .input-group-btn button {
 #post .footer-text div {
 	color: #f7f7f7;
 }
+.title-artikel {
+    line-height: 33px !important;
+}
 
-
+@media screen and (max-width:767px) {
+	.card {margin-bottom: 0;}	
+}
 
 /* Icons Font */
 .material-icons {color: #0288D1;}
