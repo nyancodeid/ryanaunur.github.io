@@ -150,7 +150,7 @@
                                     <div class="overflow">
                                         <div class="children">
                                             <div class="child">
-                                                <a target="_top" href="http://sereceh.blogspot.com/p/sedekahreceh-answer.html?ref_topic=10">
+                                                <a target="_top" onclick="openInNewTab('http://sereceh.blogspot.com/p/sedekahreceh-answer.html?ref_topic=10');" href="http://sereceh.blogspot.com/p/sedekahreceh-answer.html?ref_topic=10">
                                                     Tidak bisa memasukkan Data di Form
                                                 </a>
                                             </div>
@@ -222,10 +222,15 @@
                 </div>
             </div>
         </div>
-        <textarea class="csi" name="csi">
-        </textarea>
-
+        <script>
+            function openInNewTab(url) {
+              var win = window.open(url, '_blank');
+              win.focus();
+            }
+        </script>
+    
          <script src="js/help.min.js"></script>
+        
         <script>
             window['sc_log']= function(){};
         </script>
@@ -269,18 +274,7 @@ ih.prototype.u=function(a){this.i.appendChild(a);this.b.style.top=window.pageYOf
         <script>
             window['sc_initLightbox']();
         </script>
-        <script data-id="video">
-            var tm=[],um=!1;function vm(){if(!um){window.onYouTubeIframeAPIReady=wm;var a=document.createElement("script");a.src="//www.youtube.com/player_api";document.head.appendChild(a);um=!0}}
-function wm(){for(;0<tm.length;)tm.shift()()}
-function xm(a,b,c,d){switch(a){case -1:a=wb;break;case 0:a=vb;break;case 1:a=Bb;break;case 2:a=Cb;break;case 3:a=Db;break;case 5:a=Eb;break;default:a=gb}window.sc_trackStatsEvent(Ya,a,b,c+","+d)}
-;
-        </script>
-        <script data-id="popup_video">
 
-        </script>
-        <script>
-            window['sc_initPopupVideos']();
-        </script>
         <script data-id="select">
             
         </script>
