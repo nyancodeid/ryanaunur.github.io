@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    <title>Test page for Query YQL</title>
+
+
+    <!--[if lt IE 9]><script src="http://hail2u.github.io/js/html5shiv.min.js"></script><![endif]-->
+  </head>
+  <body>
+    <div id="content"></div>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+    <script src="jquery.query-yql.min.js"></script>
+    <script type="text/javascript">
+    var hasil = [];
+    var element = {};
+    var body = new Array;
+      $(function () {
+        var t = $('#content').empty();
+        var ea = 0;
+
+        statement = 'select * from html where url="https://ganool.is/"';
+        $.queryYQL(statement, 'json', function (data) {
+          console.log(data);
+          datas = data.query.results.body.div[0].div[1].div[1].div.div.div;
+          
+          $.each(datas, function () {
+
+            link = this.a.href;
+            statement = 'select * from html where url="'+link+'"';
+            $.queryYQL(statement, 'json', function (data) { 
+              element.judul = data.query.results.body.div["0"].div[1].div[1].div.div["0"].div["0"].div[1].h1.content.trim();
+              element.link = data.query.results.body.div[0].div[1].div[1].div.div[1].div[1].div[0].table.tbody.tr[0].td[1].a.href;
+              hasil.push(element);
+              $('body').append(JSON.stringify(element, null, 2));
+            });
+            ea++;
+
+          });
+          
+        });
+
+
+      });
+      $(document).ready(function() {
+
+
+      });
+    </script>
+  </body>
+</html>
